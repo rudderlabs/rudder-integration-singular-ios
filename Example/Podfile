@@ -1,0 +1,12 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'Rudder-Singular_Example' do
+  pod 'Rudder-Singular', :path => '../'
+  
+  target 'Rudder-Singular_Tests' do
+    inherit! :search_paths
+
+  end
+end
