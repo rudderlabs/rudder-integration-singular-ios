@@ -9,6 +9,7 @@
 #import "RUDDERAppDelegate.h"
 #import <Rudder/Rudder.h>
 #import <RudderSingularFactory.h>
+#import <RudderSingularIntegration.h>
 
 @implementation RUDDERAppDelegate
 
@@ -19,17 +20,87 @@
     NSString *writeKey = @"25YduA2CZ5DyZmmXK2IbJzo1OVq";
     NSString *dataPlaneUrl = @"https://1043-2405-201-8000-6165-356c-589e-7084-f5a1.ngrok.io";
 
+    [RudderSingularIntegration setSKANOptions:YES
+         isManualSkanConversionManagementMode:YES
+withWaitForTrackingAuthorizationWithTimeoutInterval:@0
+            withConversionValueUpdatedHandler:^(NSInteger conversionValue){
+        // Receive a callback whenever the Conversion Value is updated
+        NSLog(@"Your SKAN handler %ld",conversionValue);
+    }];
   
     RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
     [configBuilder withDataPlaneUrl:dataPlaneUrl];
-    [configBuilder withLoglevel:RSLogLevelVerbose];
+    [configBuilder withLoglevel:RSLogLevelNone];
     [configBuilder withControlPlaneUrl:@"https://7aa4-2405-201-8000-6165-356c-589e-7084-f5a1.ngrok.io"];
     [configBuilder withFactory:[RudderSingularFactory instance]];
+    [configBuilder withTrackLifecycleEvens:NO];
     [RSClient getInstance:writeKey config:[configBuilder build]];
     
-    [[RSClient getInstance] track:@"Test_Event"];
+    [self makeEvents];
     
+//    NSLog(@"%@",[self identifierForVendor]);
     return YES;
+}
+
+-(void) makeEvents {
+    [self identifyEvent];
+    [self revenueEvent];
+    [self trackEventWithProperties];
+    [self trackEventWithoutProperties];
+    [self screenEventsWithProperties];
+    [self screenEventsWithoutProperties];
+}
+
+-(void) identifyEvent {
+    [[RSClient getInstance] identify:@"iOS User"];
+}
+
+-(void) revenueEvent {
+    [[RSClient getInstance] track:@"Order Completed" properties:@{
+        @"revenue" : @123,
+        @"currency" : @"INR"
+    }];
+}
+
+-(void) trackEventWithProperties {
+    [[RSClient sharedInstance] track:@"Checkout Started" properties:@{
+        @"orderId" : @"199",
+        @"currency" : @"USD",
+        @"products" : @[
+                @{
+                    @"productId" : @"4011",
+                    @"name": @"Shirt",
+                    @"price" : @12,
+                    @"quantity" : @1
+                },
+                @{
+                    @"product_id" : @"4012",
+                    @"name": @"short",
+                    @"price" : @21,
+                    @"quantity" : @3
+                }
+        ]
+    }];
+}
+
+-(void) trackEventWithoutProperties {
+    [[RSClient getInstance] track:@"Custom Event"];
+}
+
+-(void) screenEventsWithProperties {
+    [[RSClient getInstance] screen:@"Main Screen" properties:@{
+        @"width" : @5,
+        @"pixels" : @"1080p"
+    }];
+}
+
+-(void) screenEventsWithoutProperties {
+    [[RSClient getInstance] screen:@"Home Screen"];
+}
+
+// Needed only for testing: This IDFV key needs to be registered at Singular for testing the setup
+- (NSString *)identifierForVendor {
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
