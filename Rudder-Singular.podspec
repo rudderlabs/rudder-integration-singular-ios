@@ -23,5 +23,5 @@ Pod::Spec.new do |s|
     s.static_framework = true
 
     s.dependency 'Rudder', '~> 1.0'
-    s.dependency 'Singular-SDK', '11.0.4'
+    s.dependency 'Singular-SDK', '12.5.0'
 end
