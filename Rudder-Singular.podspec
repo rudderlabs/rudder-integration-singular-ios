@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'Rudder-Singular'
-    s.version          = '1.0.0'
+    s.version          = '1.1.0'
     s.summary          = 'Privacy and Security focused Segment-alternative. Singular App Events Native SDK integration support.'
 
     s.description      = <<-DESC
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     DESC
 
     s.homepage         = 'https://github.com/rudderlabs/rudder-integration-singular-ios'
-    s.license          = { :type => "Apache", :file => "LICENSE" }
+    s.license          = { :type => "Apache", :file => "LICENSE.md" }
     s.author           = { 'Rudderlabs' => 'arnab@rudderlabs.com' }
     s.source           = { :git => 'https://github.com/rudderlabs/rudder-integration-singular-ios.git', :tag => 'v1.0.0' }
     s.platform         = :ios, "9.0"
