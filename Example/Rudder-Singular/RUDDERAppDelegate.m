@@ -17,8 +17,8 @@
 {
     // Override point for customization after application launch.
     
-    NSString *writeKey = @"25YduA2CZ5DyZmmXK2IbJzo1OVq";
-    NSString *dataPlaneUrl = @"https://1043-2405-201-8000-6165-356c-589e-7084-f5a1.ngrok.io";
+    NSString *writeKey = @"<WRITE_KEY>";
+    NSString *dataPlaneUrl = @"<DATA_PLANE_URL>";
 
     [RudderSingularIntegration setSKANOptions:YES
          isManualSkanConversionManagementMode:YES
@@ -31,7 +31,7 @@ withWaitForTrackingAuthorizationWithTimeoutInterval:@0
     RSConfigBuilder *configBuilder = [[RSConfigBuilder alloc] init];
     [configBuilder withDataPlaneUrl:dataPlaneUrl];
     [configBuilder withLoglevel:RSLogLevelNone];
-    [configBuilder withControlPlaneUrl:@"https://7aa4-2405-201-8000-6165-356c-589e-7084-f5a1.ngrok.io"];
+    [configBuilder withControlPlaneUrl:@"<CONTROL_PLANE_URL>"];
     [configBuilder withFactory:[RudderSingularFactory instance]];
     [configBuilder withTrackLifecycleEvens:NO];
     [RSClient getInstance:writeKey config:[configBuilder build]];
