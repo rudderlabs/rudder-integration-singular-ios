@@ -10,8 +10,8 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/rudderlabs/rudder-integration-singular-ios'
     s.license          = { :type => "Apache", :file => "LICENSE.md" }
     s.author           = { 'Rudderlabs' => 'arnab@rudderlabs.com' }
-    s.source           = { :git => 'https://github.com/rudderlabs/rudder-integration-singular-ios.git', :tag => 'v1.0.0' }
-    s.platform         = :ios, "9.0"
+    s.source           = { :git => 'https://github.com/rudderlabs/rudder-integration-singular-ios.git', :tag => "v#{s.version}" }
+    s.platform         = :ios, "13.0"
 
     s.pod_target_xcconfig = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
