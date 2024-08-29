@@ -6,4 +6,4 @@ All notable changes to this project will be documented in this file.
 
 ## [1.1.0] - 2024-08-29
 ### Added
-- Initial release
+- upgrade singular sdk version to latest v12.5.0
