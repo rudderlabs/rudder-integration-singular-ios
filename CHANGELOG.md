@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-11-23
+### Fixed
+- link Singular system frameworks under swift package manager
+
 ## [1.3.0] - 2026-11-20
 ### Added
 - swift package manager support
