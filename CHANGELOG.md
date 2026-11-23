@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-11-20
+### Added
+- swift package manager support
+
 ## [1.2.0] - 2026-11-18
 ### Added
 - support arm64 simulators
