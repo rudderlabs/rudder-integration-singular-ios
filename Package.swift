@@ -29,6 +29,18 @@ let package = Package(
             publicHeadersPath: "Classes/",
             cSettings: [
                 .headerSearchPath("Classes/")
+            ],
+            // Singular's SwiftPM package is a bare binaryTarget that declares no
+            // system dependencies. Mirror the Singular-SDK podspec so apps link.
+            linkerSettings: [
+                .linkedFramework("AdServices"),
+                .linkedFramework("AdSupport"),
+                .linkedFramework("Security"),
+                .linkedFramework("StoreKit"),
+                .linkedFramework("SystemConfiguration"),
+                .linkedFramework("WebKit"),
+                .linkedLibrary("sqlite3"),
+                .linkedLibrary("z")
             ]
         )
     ]
